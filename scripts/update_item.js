@@ -17,10 +17,14 @@ const updateParams = i => ({
     characterId: 1,
     species: 'Human',
     attribute: 'status',
-    value: i + ''
+    value: ('Alive' + i)
 })
-for(let i=0; i<1; i++) {
-    documentClient.update(params(updateParams), (err, data) => console.log(err ? err : data));
-}
 
+// documentClient.update(params(updateParams), (err, data) => console.log(err ? err : data));
+const updateMultipleTimes = count => {
+    for(let i=1; i<=count; i++) {
+        documentClient.update(params(updateParams(i)), (err, data) => console.log(err ? err : updateParams(i).value));
+    }
+}
+updateMultipleTimes(1000)
 module.exports = (updateParams) =>  documentClient.update(params(updateParams), (err, data) => console.log(err ? err : data));
