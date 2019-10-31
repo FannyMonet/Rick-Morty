@@ -6,7 +6,7 @@ AWS.config.update(config.aws_local_config);
 const documentClient = new AWS.DynamoDB.DocumentClient();
 
 const params = (id, species) => ({
-    TableName : 'Character',
+    TableName : [config.aws_table_name],
     Key: {
         characterId: id,
         species: species

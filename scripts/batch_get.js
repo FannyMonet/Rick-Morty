@@ -16,7 +16,7 @@ const characters = [
 ]
 const params = characters => ({
     RequestItems: {
-        'Character': {
+        [config.aws_table_name]: {
             Keys: [
                 ...characters
             ]

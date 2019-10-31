@@ -30,7 +30,7 @@ const params = {
         ReadCapacityUnits: 1,
         WriteCapacityUnits: 1
     },
-    TableName: 'Character'
+    TableName: [config.aws_table_name]
 };
 
 
