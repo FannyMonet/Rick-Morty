@@ -1,10 +1,8 @@
 const AWS = require('aws-sdk');
+const config = require('../../config/config.js');
 const characters = require('./clean_characters.js');
-const awsConfig = {
-    "endpoint": "http://localhost:8000",
-    "region": "localhost"
-};
-AWS.config.update(awsConfig);
+
+AWS.config.update(config.aws_local_config);
 
 const documentClient = new AWS.DynamoDB.DocumentClient();
 const putRequests = characters => characters.map(character => ({
@@ -14,7 +12,7 @@ const putRequests = characters => characters.map(character => ({
 }))
 const params = characters => ({
     RequestItems: {
-        'Character': putRequests(characters)
+        [config.aws_table_name]: putRequests(characters)
     }
 });
 

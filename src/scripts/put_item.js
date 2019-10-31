@@ -1,10 +1,7 @@
 const AWS = require('aws-sdk');
+const config = require('../../config/config.js');
 
-const awsConfig = {
-    "endpoint": "http://localhost:8000",
-    "region": "localhost"
-};
-AWS.config.update(awsConfig);
+AWS.config.update(config.aws_local_config);;
 
 const documentClient = new AWS.DynamoDB.DocumentClient();
 
