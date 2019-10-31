@@ -1,0 +1,14 @@
+{
+  "name": "poc_dynamodb",
+  "version": "1.0.0",
+  "description": "POC dynamodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fanny Monet",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.559.0"
+  }
+}
