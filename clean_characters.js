@@ -16,7 +16,5 @@ const removeEmptyRows = object => Object.entries(object)
 const characters = JSON.parse(fs.readFileSync('characters.json', 'utf8')).map(character => {
     return removeEmptyRows(character);
 })
-// const characters = removeEmptyRows(JSON.parse(fs.readFileSync('characters.json', 'utf8')));
-// console.log(characters)
 
 module.exports = characters;
