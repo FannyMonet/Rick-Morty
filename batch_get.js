@@ -7,27 +7,27 @@ const awsConfig = {
 AWS.config.update(awsConfig);
 
 const documentClient = new AWS.DynamoDB.DocumentClient();
-
-const params = {
+const characters = [
+    {
+        characterId: 1,
+        species: 'Human'
+    },
+    {
+        characterId: 20,
+        species: 'Human'
+    }
+]
+const params = characters => ({
     RequestItems: {
         'Character': {
             Keys: [
-                {
-                    characterId: 1,
-                    species: 'Human'
-                }
-            ]
-        },
-        'Character': {
-            Keys: [
-                {
-                    characterId: 20,
-                    species: 'Human'
-                }
+                ...characters
             ]
         }
     }
-};
+});
 
 
-documentClient.batchGet(params, (err, data) => console.log(err ? err : data.Responses));
+documentClient.batchGet(params(characters), (err, data) => console.log(err ? err : data.Responses.Character));
+
+module.exports = (characters) =>  documentClient.batchGet(params(characters), (err, data) => console.log(err ? err : data));

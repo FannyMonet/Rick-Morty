@@ -16,4 +16,4 @@ var params = species => ({
 
 documentClient.scan(params('Human'), (err, data) => console.log(err ? err : data));
 
-export default species =>  documentClient.get(params(species), (err, data) => console.log(err ? err : data));
+module.exports = species =>  documentClient.scan(params(species), (err, data) => console.log(err ? err : data));

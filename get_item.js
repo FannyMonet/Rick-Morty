@@ -18,4 +18,4 @@ const params = (id, species) => ({
 
 documentClient.get(params(20, 'Human'), (err, data) => console.log(err ? err : data));
 
-// export default (id, species) =>  documentClient.get(params(id, species), (err, data) => console.log(err ? err : data));
+module.exports = (id, species) =>  documentClient.get(params(id, species), (err, data) => console.log(err ? err : data));

@@ -7,15 +7,16 @@ const awsConfig = {
 AWS.config.update(awsConfig);
 
 const documentClient = new AWS.DynamoDB.DocumentClient();
-const putRequests = characters.map(character => ({
+const putRequests = characters => characters.map(character => ({
     PutRequest: {
         Item: {...character}
     }
 }))
-const params = {
+const params = characters => ({
     RequestItems: {
-        'Character': putRequests
+        'Character': putRequests(characters)
     }
-}
+});
 
-documentClient.batchWrite(params, (err, data) => console.log(err ? err : data.Responses));
+// documentClient.batchWrite(params(characters), (err, data) => console.log(err ? err : data.Responses));
+module.exports = (characters) =>  documentClient.batchWrite(params(characters), (err, data) => console.log(err ? err : data));

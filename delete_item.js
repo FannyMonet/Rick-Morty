@@ -8,12 +8,13 @@ AWS.config.update(awsConfig);
 
 const documentClient = new AWS.DynamoDB.DocumentClient();
 
-const [characterId, species] = [...process.argv.slice(2)];
-const params = {
+const params = (characterId, species) => ({
     TableName : 'Character',
     Key: {
         characterId: parseInt(characterId),
         species: species
     }
-};
-documentClient.delete(params, (err, data) => console.log(err ? err : data.Responses));
+});
+// documentClient.delete(params(1, 'Human'), (err, data) => console.log(err ? err : data.Responses));
+
+module.exports = (id, species) =>  documentClient.delete(params(id, species), (err, data) => console.log(err ? err : data));

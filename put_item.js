@@ -8,32 +8,6 @@ AWS.config.update(awsConfig);
 
 const documentClient = new AWS.DynamoDB.DocumentClient();
 
-// const params = {
-//     TableName : 'Character',
-//     Item: {
-//         characterId: 1,
-//         name: 'Rick Sanchez',
-//         status: 'Alive',
-//         species: 'Human',
-//         gender: "Male",
-//         origin: {
-//             name: "Earth",
-//             url: "https://rickandmortyapi.com/api/location/1"
-//         },
-//         location: {
-//             name: "Earth",
-//             url: "https://rickandmortyapi.com/api/location/20"
-//         },
-//         image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-//         episode: [
-//             "https://rickandmortyapi.com/api/episode/1",
-//             "https://rickandmortyapi.com/api/episode/2",
-//         ],
-//         url: "https://rickandmortyapi.com/api/character/1",
-//         created: "2017-11-04T18:48:46.250Z"
-//     }
-// };
-
 const params = character => ({
     TableName : 'Character',
     Item: {
@@ -57,4 +31,4 @@ const params = character => ({
     }
 });
 
-documentClient.put(params, (err, data) => console.log(err ? err : data));
+module.exports = (character) =>  documentClient.put(params(character), (err, data) => console.log(err ? err : data));
