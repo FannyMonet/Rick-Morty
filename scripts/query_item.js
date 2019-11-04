@@ -8,9 +8,9 @@ const documentClient = new AWS.DynamoDB.DocumentClient();
 const getCharacterByName = name => {
     return {
         TableName: config.aws_table_name,
-        KeyConditionExpression: 'characterId = :minId and begins_with(sortingKey, :entry)',
+        KeyConditionExpression: 'characterId = :id and begins_with(sortingKey, :entry)',
         ExpressionAttributeValues: {
-            ':minId': 1,
+            ':id': 1,
             ':entry': name
         }
     };
