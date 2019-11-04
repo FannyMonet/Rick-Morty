@@ -12,7 +12,7 @@ const params = {
             AttributeType: 'N'
         },
         {
-            AttributeName: 'species',
+            AttributeName: 'sortingKey',
             AttributeType: 'S'
         }
     ],
@@ -22,7 +22,7 @@ const params = {
             KeyType: 'HASH'
         },
         {
-            AttributeName: 'species',
+            AttributeName: 'sortingKey',
             KeyType: 'RANGE'
         }
     ],
@@ -30,7 +30,7 @@ const params = {
         ReadCapacityUnits: 1,
         WriteCapacityUnits: 1
     },
-    TableName: [config.aws_table_name]
+    TableName: config.aws_table_name
 };
 
 
